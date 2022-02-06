@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    align-content: center;
+}
+
+.text_container {
+    display: flex;
+    align-content: center;
+
+    @media only screen and (max-width: 768px) {
+        display: none;
+    }
+}
+
+.menu_style {
+    width: 200px;
+    border-radius: 5px;
+}
+
+.avatar_color {
+    background-color: #ff3e3d;
+}

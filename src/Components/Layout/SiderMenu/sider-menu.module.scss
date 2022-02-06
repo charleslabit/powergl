@@ -1,0 +1,98 @@
+.content_margin {
+    margin: 0 25px 0 225px;
+    transition: all 0.2s;
+}
+
+.sider_collapsed {
+    margin: 0 25px 0 105px;
+    transition: all 0.2s;
+}
+
+.fix_sider {
+    height: 100vh;
+    position: fixed;
+    left: 0;
+}
+
+.logo {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.logo_card {
+    text-align: center;
+}
+
+.logo_image {
+    background-color: #ff3e3d;
+}
+
+.black_font_weight {
+    font-weight: 900;
+}
+
+.home_button {
+    background-color: #f6f6f6;
+    border: none;
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    font-weight: bold;
+    margin: 8px 0;
+    border-radius: 5px;
+
+    > span {
+        color: #ff3e3d;
+    }
+}
+
+.icon_size {
+    font-size: 29px;
+}
+
+.content_overflow {
+    overflow: auto;
+}
+
+.back_button {
+    font-size: 20px;
+    cursor: pointer;
+}
+.sider_trigger {
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+
+    color: #ff3e3d;
+    background: white;
+
+    font-size: 20px;
+    border-radius: 25px;
+
+    box-shadow: 1px 0px 5px 1px #ff3e3d;
+
+    &:hover {
+        background: #ff3e3d;
+        color: white;
+    }
+}
+
+.header_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.route_back_button {
+    color: #ff3e3d;
+    border-radius: 25px;
+
+    font-size: 20px;
+    &:hover {
+        background: #ff3e3d;
+        color: white;
+    }
+}

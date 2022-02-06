@@ -5,12 +5,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "nodemon server/index.js"
   },
   "dependencies": {
-    "next": "12.0.4",
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.17.2",
+    "axios": "^0.21.4",
+    "babel-plugin-import": "^1.13.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mssql": "^8.0.1",
+    "next": "^12.0.10",
+    "next-images": "^1.8.4",
+    "next-plugin-antd-less": "^1.5.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sass": "^1.44.0",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "eslint": "7",

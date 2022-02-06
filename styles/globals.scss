@@ -1,0 +1,50 @@
+.center {
+    text-align: center;
+}
+
+.max-width {
+    width: 100%;
+}
+.max-height {
+    height: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.align-right {
+    text-align: right;
+}
+.align-center {
+    text-align: center;
+}
+
+.no-padding {
+    padding: 0;
+}
+.no-margin {
+    margin: 0;
+}
+
+.white-color {
+    color: white;
+}
+
+.ant-layout-sider {
+    box-shadow: 0px 0px 11px 0px rgb(171 171 171 / 17%);
+    -webkit-box-shadow: 0px 0px 11px 0px rgb(171 171 171 / 17%);
+    -moz-box-shadow: 0px 0px 11px 0px rgb(171 171 171 / 17%);
+}
+
+.ant-pagination {
+    text-align: center;
+}
+
+.ant-upload-list-picture-card {
+    .ant-upload-list-item-info {
+        &::before {
+            left: 0;
+        }
+    }
+}
