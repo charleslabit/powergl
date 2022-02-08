@@ -1,7 +1,6 @@
-import Pages from "../src/Components/Layout/Pages/Pages";
 
 const Page = () => {
-    return <Pages></Pages>;
+    return <div>Power GL !</div>;
 };
 
 export default Page;
