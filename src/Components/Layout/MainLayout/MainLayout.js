@@ -37,9 +37,9 @@ const MainLayout = ({ Component, pageProps, children }) => {
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
         style={{ backgroundColor: "white" }}
-        breakpoint={"lg"}
+        breakpoint={"md"}
         className={fix_sider}
-        width={220}
+        width={270}
         trigger={null}
         collapsible
         collapsed={collapsed}
@@ -48,11 +48,12 @@ const MainLayout = ({ Component, pageProps, children }) => {
         <div className={logo}>
           <Typography.Title className={black_font_weight}>
             <Card bordered={false}>
-              <Image
+              {/* <Image
                 src={collapsed ? ALILogoOnly : ALILogo}
                 alt="Logo"
                 preview={false}
-              ></Image>
+              ></Image> */}
+              LOGO 
             </Card>
           </Typography.Title>
         </div>
@@ -61,7 +62,6 @@ const MainLayout = ({ Component, pageProps, children }) => {
             <HomeOutlined className={"pointer"} onClick={() => goTo("/")} />
           ) : (
             <Button
-              className={home_button}
               icon={<HomeOutlined />}
               onClick={() => goTo("/")}
             >
@@ -72,7 +72,8 @@ const MainLayout = ({ Component, pageProps, children }) => {
         <Menu
           defaultSelectedKeys={[defaultPath]}
           mode="inline"
-          style={{ overflowY: "auto", overflowX: "hidden", height: "70vh" }}
+          style={{ overflowY: "auto", overflowX: "hidden", height: "70vh"}}
+          
         >
           {Pages().map((page) => {
             return (
