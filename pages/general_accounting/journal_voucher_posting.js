@@ -1,8 +1,9 @@
 import React from 'react'
+import JournalVoucherPosting from '../../src/Components/Layout/JournalVoucherPosting/JournalVoucherPosting'
 
 const journal_voucher_posting = () => {
   return (
-    <div>journal_voucher_posting</div>
+    <JournalVoucherPosting></JournalVoucherPosting>
   )
 }
 

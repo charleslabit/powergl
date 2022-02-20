@@ -18,7 +18,7 @@ import axios from "axios";
 import moment from "moment";
 import { journalVoucherColumns } from "./JournalVoucherConfig";
 import ModalJournalVoucher from "../../Modules/ModalJournalVoucher/ModalJournalVoucher";
-import GlobalFormatter from "../../Utilities/GlobalFormatter";
+import toastr from "toastr";
 
 const JournalVoucher = () => {
 	const api = "http://localhost:2929/api/";
@@ -26,6 +26,7 @@ const JournalVoucher = () => {
 	const [branch, setBranch] = useState([]);
 	const [glList, setGLList] = useState([]);
 	const [ccList, setCCList] = useState([]);
+	const [slList, setSLList] = useState([]);
 	const [journalVoucherList, setJournalVoucherList] = useState([]);
 
 	useEffect(() => {
@@ -40,19 +41,23 @@ const JournalVoucher = () => {
 		axios.get(`${api}jvcc`).then((item) => {
 			setCCList(item.data);
 		});
+
+		axios.get(`${api}sl`).then((item) => {
+			setSLList(item.data);
+		});
+
 	}, []);
 
 	const onSave = async () => {
 		const values = await form.getFieldValue();
-		const translatedValue = GlobalFormatter.translateDate(values);
 
 		const toInsertHeaderDetails = {
-			branch: translatedValue.branch,
-			docNo: translatedValue.document_no,
-			doc_date: translatedValue.document_date,
+			branch: values.branch,
+			docNo: values.document_no,
+			doc_date: moment(values.document_date).format('YYYY-MM-DD'),
 			doc_amt: 0,
-			ref_no: translatedValue.reference,
-			remarks: translatedValue.remarks,
+			ref_no: values.reference,
+			remarks: values.remarks,
 			period: "",
 			dtype: "",
 			uid: "charles",
@@ -63,7 +68,8 @@ const JournalVoucher = () => {
 
 		axios.post(`${api}jvh`, toInsertHeaderDetails).then((res) => {
 			if (res.status === 200) {
-				console.log("OK");
+				toastr.success("Saved !");
+				form.resetFields()
 			}
 		});
 
@@ -71,8 +77,8 @@ const JournalVoucher = () => {
 			const str = "" + (i + 1);
 			const pad = "0000";
 			const toInsertDetails = {
-				branch: translatedValue.branch,
-				docNo: translatedValue.document_no,
+				branch: values.branch,
+				docNo: values.document_no,
 				lineNo: pad.substring(0, pad.length - str.length) + str,
 				glCode: journalVoucherList[i]?.gl.split("-")[0],
 				ccCode: journalVoucherList[i]?.cc.split("-")[0],
@@ -85,7 +91,7 @@ const JournalVoucher = () => {
 			};
 			axios.post(`${api}jvd2`, toInsertDetails).then((res) => {
 				if (res.status === 200) {
-					console.log("OK");
+					setJournalVoucherList([]);
 				}
 			});
 		}
@@ -100,8 +106,7 @@ const JournalVoucher = () => {
 			>
 				<Row style={{ padding: 10, marginBottom: 10, backgroundColor: "white" }}>
 					<Col xs={24} sm={24} md={24} lg={12}>
-						<Button onClick={onSave}>SAVE</Button> <Button>A</Button>{" "}
-						<Button>A</Button> <Button>A</Button>
+						<Button onClick={onSave}>SAVE</Button> 
 						<Form.Item label={"Branch"} style={{ margin: 5 }} name="branch">
 							<Select>
 								{branch.map((item) => {
@@ -171,6 +176,7 @@ const JournalVoucher = () => {
 					setJournalVoucherList={setJournalVoucherList}
 					glList={glList}
 					ccList={ccList}
+					slList={slList}
 				></ModalJournalVoucher>
 			</div>
 			<Table
@@ -179,7 +185,8 @@ const JournalVoucher = () => {
 					journalVoucherList,
 					setJournalVoucherList,
 					glList,
-					ccList
+					ccList,
+					slList
 				)}
 				rowKey={"line_no"}
 				scroll={{ x: 1350 }}

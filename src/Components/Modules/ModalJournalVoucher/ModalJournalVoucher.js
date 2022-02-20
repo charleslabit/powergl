@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Form, Input, Select, Row, Col } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+	Button,
+	Modal,
+	Form,
+	Input,
+	Select,
+	Row,
+	Col,
+	InputNumber,
+} from "antd";
+import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { v4 as uuidv4 } from "uuid";
 
 const ModalJournalVoucher = ({
@@ -8,7 +17,8 @@ const ModalJournalVoucher = ({
 	journalVoucherList,
 	setJournalVoucherList,
 	glList,
-	ccList
+	ccList,
+	slList,
 }) => {
 	const [modalForm] = Form.useForm();
 	const [isModalVisible, setIsModalVisible] = useState(false);
@@ -52,8 +62,9 @@ const ModalJournalVoucher = ({
 					onClick={() => {
 						setIsModalVisible(true);
 					}}
+					icon={<PlusOutlined />}
 				>
-					Create
+					Add
 				</Button>
 			)}
 
@@ -67,9 +78,9 @@ const ModalJournalVoucher = ({
 			>
 				<Form layout="vertical" form={modalForm} labelAlign="left">
 					<Row gutter={[8, 8]}>
-						<Col span={24}>
+						<Col span={12}>
 							<Form.Item label="CC" style={{ margin: 0 }} name="cc">
-							<Select
+								<Select
 									showSearch
 									optionFilterProp="children"
 									filterOption={(input, option) => {
@@ -115,33 +126,29 @@ const ModalJournalVoucher = ({
 								</Select>
 							</Form.Item>
 						</Col>
-						{/* <Col span={12}>
-							<Form.Item label="GL Name" style={{ margin: 0 }} name="gl_name">
-								<Input readOnly />
-							</Form.Item>
-						</Col> */}
 
 						<Col span={12}>
-							<Form.Item label="SL Code" style={{ margin: 0 }} name="sl">
-								<Input />
-							</Form.Item>
-						</Col>
-						<Col span={12}>
-							<Form.Item
-								label="Subsidiary Name"
-								style={{ margin: 0 }}
-								name="subsidiary_name"
-							>
-								<Input />
-							</Form.Item>
-						</Col>
-						<Col span={12}>
-							<Form.Item
-								label="Cost / Profit Center"
-								style={{ margin: 0 }}
-								name="cost"
-							>
-								<Input />
+							<Form.Item label="SL" style={{ margin: 0 }} name="sl">
+								<Select
+									showSearch
+									optionFilterProp="children"
+									filterOption={(input, option) => {
+										return (
+											option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+										);
+									}}
+								>
+									{slList?.map((items) => {
+										return (
+											<Select.Option
+												key={items.sl_code}
+												value={`${items.sl_code} - ${items.sl_name}`}
+											>
+												{`${items.sl_code} - ${items.sl_name}`}
+											</Select.Option>
+										);
+									})}
+								</Select>
 							</Form.Item>
 						</Col>
 						<Col span={12}>
@@ -149,14 +156,24 @@ const ModalJournalVoucher = ({
 								<Input />
 							</Form.Item>
 						</Col>
-						<Col span={12}>
-							<Form.Item label="Debit" style={{ margin: 0 }} name="debit">
-								<Input />
+						<Col span={8}>
+							<Form.Item
+								label="Cost / Profit Center"
+								style={{ margin: 0 }}
+								name="cost"
+							>
+								<InputNumber style={{ width: "100%" }} />
 							</Form.Item>
 						</Col>
-						<Col span={12}>
+
+						<Col span={8}>
+							<Form.Item label="Debit" style={{ margin: 0 }} name="debit">
+								<InputNumber style={{ width: "100%" }} />
+							</Form.Item>
+						</Col>
+						<Col span={8}>
 							<Form.Item label="Credit" style={{ margin: 0 }} name="credit">
-								<Input />
+								<InputNumber style={{ width: "100%" }} />
 							</Form.Item>
 						</Col>
 						<Col span={24}>

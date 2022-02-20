@@ -19,6 +19,7 @@ import {
   sider_collapsed,
   fix_sider,
 } from "./MainLayout.module.scss";
+import "toastr/build/toastr.min.css";
 
 const MainLayout = ({ Component, pageProps, children }) => {
   const { Sider, Header, Content, Footer } = Layout;

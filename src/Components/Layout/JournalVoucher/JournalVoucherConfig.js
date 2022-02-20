@@ -6,7 +6,8 @@ export const journalVoucherColumns = (
 	journalVoucherList,
 	setJournalVoucherList,
 	gLList,
-  ccList
+	ccList,
+	slList
 ) => {
 	return [
 		{
@@ -56,19 +57,13 @@ export const journalVoucherColumns = (
 			width: 100,
 		},
 		{
-			title: "SL Code",
-			dataIndex: "sl_code",
-			key: "sl_code",
+			title: "SL",
+			dataIndex: "sl",
+			key: "sl",
 			align: "center",
 			width: 100,
 		},
-		{
-			title: "Subsidiary Name",
-			dataIndex: "subsidiary_name",
-			key: "subsidiary_name",
-			align: "center",
-			width: 150,
-		},
+
 		{
 			title: "VAT / ATC",
 			dataIndex: "vat",
@@ -112,7 +107,8 @@ export const journalVoucherColumns = (
 							journalVoucherList={journalVoucherList}
 							setJournalVoucherList={setJournalVoucherList}
 							gLList={gLList}
-              ccList={ccList}
+							ccList={ccList}
+							slList={slList}
 						/>
 						<DeleteOutlined
 							onClick={() => {
